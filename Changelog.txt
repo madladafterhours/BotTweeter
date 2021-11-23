@@ -1,0 +1,12 @@
+1.1
+-Ability to reply to tweets
+-Ability to post and reply with media
+
+1.2
+-Drafts
+-Setup wizard
+
+Todo:
+Ability to quote tweet without pasting link
+Character limit check
+Tweet multiple images in single tweet
