@@ -1,4 +1,4 @@
-Thank you for using BotTweeter!
+**BotTweeter**
 
 DISCLAIMER
 -----------------------------------------------------------------------------------
