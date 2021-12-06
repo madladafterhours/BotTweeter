@@ -6,7 +6,14 @@
 -Drafts
 -Setup wizard
 
+1.3
+-Now using up to date tweepy
+-Errors are now logged in crashlog.txt
+-Character limit check
+-Secure version of BT (all authentication info is encrypted)
+-WARNING: You will not be able to use BT on another machine without setting it up again
+
 Todo:
+Ability to select media from outside the BT folder
 Ability to quote tweet without pasting link
-Character limit check
 Tweet multiple images in single tweet

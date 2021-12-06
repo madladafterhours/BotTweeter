@@ -1,4 +1,5 @@
 import sys
+import traceback
 import tweepy
 import os
 from tkinter import messagebox as mbox
@@ -7,15 +8,22 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import BT_support
 import drafts
-import json
+import subprocess
+from Cryptodome.Cipher import AES
+uuid = str(subprocess.check_output('wmic csproduct get uuid'), 'utf-8').split('\n')[1].strip().split('-')
+ekey = uuid[0]+uuid[2]+uuid[1]
 
-with open('auth.data', 'r') as authdata:
-    authlist = list(authdata)
-cleandata = json.loads(authlist[0])
+with open('auth.data', 'rb') as authdata:
+    authlist = authdata.read().split('\n'.encode('utf-8'))
+decrypt = AES.new(ekey.encode("utf8"), AES.MODE_CFB, 'BotTweeterMadlad'.encode("utf8"))
+auth = decrypt.decrypt(authlist[0]).decode('utf-8')
+authsecret = decrypt.decrypt(authlist[1]).decode('utf-8')
+key = decrypt.decrypt(authlist[2]).decode('utf-8')
+keysecret = decrypt.decrypt(authlist[3]).decode('utf-8')
 
 #####AUTHENTICATION#####
-auth = tweepy.OAuthHandler(cleandata['auth'], cleandata['authsecret']) #ENTER INFO HERE
-auth.set_access_token(cleandata['key'], cleandata['keysecret']) #ENTER INFO HERE
+auth = tweepy.OAuthHandler(auth, authsecret) #ENTER INFO HERE
+auth.set_access_token(key, keysecret) #ENTER INFO HERE
 
 api = tweepy.API(auth)
 
@@ -209,7 +217,12 @@ class Toplevel1:
         self.Checkbutton1.configure(text='Reply')
         self.Checkbutton1.configure(variable=cb1)
         self.Checkbutton1.configure(command=endis)
-        
+
+        def crash(exc):
+            with open('crashlog.txt', 'w') as f:
+                f.write(str(exc))
+            mbox.showinfo('Error','''Something went wrong! Please contact the developer and send them the crashlog.txt file''', icon='error')
+
         def read_drafts():
             if os.stat('drafts.paul.town').st_size != 0:
                 drafts.vp_start_gui()
@@ -228,8 +241,9 @@ class Toplevel1:
                                         f.write('\n')
                                         print('Draft saved!')
                                         mbox.showinfo('Success!','Draft has been saved')
-                                    except:
-                                        mbox.showinfo('Error','Tweet was not sent. Please select a file type Twitter supports and check your connection.')
+                                    except Exception as e:
+                                        crash(exc = traceback.format_exc())
+                                        exit()
                                 else:
                                     mbox.showinfo('Error','''No such file exists in this script's folder''')
                             else:
@@ -259,8 +273,9 @@ class Toplevel1:
                                     f.write('\n')
                                     print('Draft saved!')
                                     mbox.showinfo('Success!','Draft has been saved')
-                                except:
-                                    mbox.showinfo('Error','Tweet was not sent. Please select a file type Twitter supports and check your connection.')
+                                except Exception as e:
+                                    crash(exc = traceback.format_exc())
+                                    exit()
                             else:
                                 mbox.showinfo('Error','''No such file exists in this script's folder''')
                         else:
@@ -280,49 +295,63 @@ class Toplevel1:
                 if cb2.get() == 1:
                     if self.Entry2.get() != '':
                         if self.Entry3.get() != '':
-                            if os.path.isfile(self.Entry3.get()) == True:
-                                try:
-                                    api.update_with_media(self.Entry3.get(), status = self.Text1.get('1.0','end-1c'), in_reply_to_status_id = self.Entry2.get(), auto_populate_reply_metadata=True)
-                                    print('Tweet sent!')
-                                    os._exit(0)
-                                except:
-                                    mbox.showinfo('Error','Tweet was not sent. Please select a file type Twitter supports and check your connection.')
+                            if len(self.Text1.get('1.0','end-1c')) <= 280:
+                                if os.path.isfile(self.Entry3.get()) == True:
+                                    try:
+                                        api.update_status_with_media(self.Entry3.get(), status = self.Text1.get('1.0','end-1c'), in_reply_to_status_id = self.Entry2.get(), auto_populate_reply_metadata=True)
+                                        print('Tweet sent!')
+                                        os._exit(0)
+                                    except Exception as e:
+                                        crash(exc = traceback.format_exc())
+                                        exit()
+                                else:
+                                    mbox.showinfo('Error','''No such file exists in this script's folder''')
                             else:
-                                mbox.showinfo('Error','''No such file exists in this script's folder''')
+                                mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
                         else:
                             mbox.showinfo('Error','Please specify a media file')
                     else:
                         mbox.showinfo('Error','There is no tweet ID')
                 else:
                     if self.Text1.get('1.0','end-1c') != '':
-                        if self.Entry2.get() != '':
-                            api.update_status(status = self.Text1.get('1.0','end-1c'), in_reply_to_status_id = self.Entry2.get(), auto_populate_reply_metadata=True)
-                            print('Tweet sent!')
-                            os._exit(0)
+                        if len(self.Text1.get('1.0','end-1c')) <= 280:
+                            if self.Entry2.get() != '':
+                                api.update_status(status = self.Text1.get('1.0','end-1c'), in_reply_to_status_id = self.Entry2.get(), auto_populate_reply_metadata=True)
+                                print('Tweet sent!')
+                                os._exit(0)
+                            else:
+                                mbox.showinfo('Error','There is no tweet ID')
                         else:
-                            mbox.showinfo('Error','There is no tweet ID')
+                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
                     else:
                         mbox.showinfo('Error','Your tweet is empty')
 
             else:
                 if cb2.get() == 1:
                     if self.Entry3.get() != '':
-                        if os.path.isfile(self.Entry3.get()) == True:
-                            try:
-                                api.update_with_media(self.Entry3.get(), self.Text1.get('1.0','end-1c'))
-                                print('Tweet sent!')
-                                os._exit(0)
-                            except:
-                                mbox.showinfo('Error','Tweet was not sent. Please select a file type Twitter supports and check your connection.')
+                        if len(self.Text1.get('1.0','end-1c')) <= 280:
+                            if os.path.isfile(self.Entry3.get()) == True:
+                                try:
+                                    api.update_status_with_media(self.Text1.get('1.0','end-1c'), self.Entry3.get())
+                                    print('Tweet sent!')
+                                    os._exit(0)
+                                except Exception as e:
+                                    crash(exc = traceback.format_exc())
+                                    exit()
+                            else:
+                                mbox.showinfo('Error','''No such file exists in this script's folder''')
                         else:
-                            mbox.showinfo('Error','''No such file exists in this script's folder''')
+                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
                     else:
                         mbox.showinfo('Error','Please specify a media file')
                 else:
                     if self.Text1.get('1.0','end-1c') != '':
-                        api.update_status(self.Text1.get('1.0','end-1c'))
-                        print('Tweet sent!')
-                        os._exit(0)
+                        if len(self.Text1.get('1.0','end-1c')) <= 280:
+                            api.update_status(self.Text1.get('1.0','end-1c'))
+                            print('Tweet sent!')
+                            os._exit(0)
+                        else:
+                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
                     else:
                         mbox.showinfo('Error','Your tweet is empty')
         
