@@ -13,7 +13,7 @@ INSTALLATION
 -----------------------------------------------------------------------------------
 -Install pip if you haven't already
 
--Double-click setup.py
+-Open setup.py
 
 -The script will install all required libraries
 
