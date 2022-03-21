@@ -1,6 +1,6 @@
 **BotTweeter**
 
-![Alt text](https://i.imgur.com/k98ofxL.png)
+![Image](https://i.imgur.com/MY8Hs0K.png)
 
 DISCLAIMER
 -----------------------------------------------------------------------------------
