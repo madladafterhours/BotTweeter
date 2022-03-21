@@ -1,5 +1,7 @@
 **BotTweeter**
 
+![Alt text](https://imgur.com/k98ofxL)
+
 DISCLAIMER
 -----------------------------------------------------------------------------------
 BT was made to run on APIv1, I havent worked on anything APIv2 related so to be
