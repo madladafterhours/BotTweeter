@@ -4,11 +4,9 @@
 
 DISCLAIMER
 -----------------------------------------------------------------------------------
-BT was made to run on APIv1, I havent worked on anything APIv2 related so to be
-quite frank I'm not sure whether or not BT is compatible with APIv2. If you are
-running it on APIv2 though, keep in mind that your project will need essential
-access or whatever they call it.
-
+BT was made to run on APIv1, I'm pretty sure (but not certain) that it works on
+APIv2 natively though. If you're getting authentication errors after verifying
+that the tokens are correct, the API version used is most likely the issue.
 -----------------------------------------------------------------------------------
 
 INSTALLATION
