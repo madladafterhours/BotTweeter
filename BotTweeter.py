@@ -85,7 +85,7 @@ class Toplevel1:
         self.Label1.configure(foreground="#000000")
         self.Label1.configure(highlightbackground="#d9d9d9")
         self.Label1.configure(highlightcolor="black")
-        self.Label1.configure(text='BotTweeter 1.2')
+        self.Label1.configure(text='BotTweeter 1.3')
 
         self.Label2 = tk.Label(top)
         self.Label2.place(relx=0.417, rely=0.114, height=32, width=71)
