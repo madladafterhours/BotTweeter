@@ -11,7 +11,7 @@ print('''  ____        _ _______                _
  | |_) | ___ | |_ | |_      _____  ___| |_ ___ _ __ 
  |  _ < / _ \| __|| \ \ /\ / / _ \/ _ \ __/ _ \ '__|
  | |_) | (_) | |_ | |\ V  V /  __/  __/ ||  __/ |   
- |____/ \___/ \__||_| \_/\_/ \___|\___|\__\___|_| v1.3\n''')
+ |____/ \___/ \__||_| \_/\_/ \___|\___|\__\___|_| v1.3.1\n''')
 
 x = input("Do you want to begin the setup? (y/n): ")
 if x != 'y' and x != 'yes':
@@ -20,9 +20,9 @@ if x != 'y' and x != 'yes':
 else:
     print('Installing packages...')
     os.system('cmd /c "python -m pip install tweepy"')
-    os.system('cmd /c "python -m pip install pycryptodome"')
-    print('Packages successfully installed!')
+    os.system('cmd /c "python -m pip install pycryptodomex"')
     from Cryptodome.Cipher import AES
+    print('\nPackages successfully installed!')
     auth = input('auth: ')
     authsecret = input('auth secret: ')
     key = input('key: ')

@@ -59,7 +59,7 @@ def destroy_Toplevel1():
 
 class Toplevel1:
     def __init__(self, top=None):
-        
+
         _bgcolor = '#d9d9d9'
         _fgcolor = '#000000'
         _compcolor = '#d9d9d9'
@@ -70,153 +70,66 @@ class Toplevel1:
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
         top.resizable(1,  1)
-        top.title("BotTweeter 1.3")
-        top.configure(background="#d9d9d9")
-        top.configure(highlightbackground="#d9d9d9")
+        top.title("BotTweeter 1.3.1")
+        top.configure(background=_bgcolor)
+        top.configure(highlightbackground=_bgcolor)
         top.configure(highlightcolor="black")
 
-        self.Label1 = tk.Label(top)
-        self.Label1.place(relx=0.313, rely=0.029, height=32, width=206)
-        self.Label1.configure(activebackground="#f9f9f9")
-        self.Label1.configure(activeforeground="black")
-        self.Label1.configure(background="#d9d9d9")
-        self.Label1.configure(disabledforeground="#a3a3a3")
-        self.Label1.configure(font="-family {Arial} -size 20 -weight bold")
-        self.Label1.configure(foreground="#000000")
-        self.Label1.configure(highlightbackground="#d9d9d9")
-        self.Label1.configure(highlightcolor="black")
-        self.Label1.configure(text='BotTweeter 1.3')
+        self.title = tk.Label(top)
+        self.title.place(relx=0.301, rely=0.029, height=32, width=220)
+        self.title.configure(text='BotTweeter 1.3.1',
+                              background=_bgcolor, font="-size 20 -weight bold")
 
-        self.Label2 = tk.Label(top)
-        self.Label2.place(relx=0.417, rely=0.114, height=32, width=71)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(font="-family {Segoe UI} -size 12")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='by madlad')
+        self.sig = tk.Label(top)
+        self.sig.place(relx=0.417, rely=0.114, height=32, width=71)
+        self.sig.configure(text='by madlad', background=_bgcolor, font=" size 12")
 
-        self.Label3 = tk.Label(top)
-        self.Label3.place(relx=0.0, rely=0.149, height=18, width=124)
-        self.Label3.configure(activebackground="#f9f9f9")
-        self.Label3.configure(activeforeground="black")
-        self.Label3.configure(background="#d9d9d9")
-        self.Label3.configure(disabledforeground="#a3a3a3")
-        self.Label3.configure(font="-family {Segoe UI} -size 13")
-        self.Label3.configure(foreground="#000000")
-        self.Label3.configure(highlightbackground="#d9d9d9")
-        self.Label3.configure(highlightcolor="black")
-        self.Label3.configure(text='Tweet caption')
+        self.captionLabel = tk.Label(top)
+        self.captionLabel.place(relx=0.0, rely=0.149, height=18, width=124)
+        self.captionLabel.configure(text='Tweet caption', background=_bgcolor, font="-size 13")
 
         cb1 = tk.IntVar()
         cb2 = tk.IntVar()
 
-        self.Entry2 = tk.Entry(top)
-        self.Entry2.place(relx=0.017, rely=0.714, height=20, relwidth=0.337)
-        self.Entry2.configure(background="white")
-        self.Entry2.configure(disabledforeground="#a3a3a3")
-        self.Entry2.configure(font="-family {Courier New} -size 11")
-        self.Entry2.configure(foreground="#000000")
-        self.Entry2.configure(highlightbackground="#d9d9d9")
-        self.Entry2.configure(highlightcolor="black")
-        self.Entry2.configure(insertbackground="black")
-        self.Entry2.configure(selectbackground="blue")
-        self.Entry2.configure(selectforeground="white")
+        self.replyID = tk.Entry(top)
+        self.replyID.place(relx=0.017, rely=0.714, height=20, relwidth=0.337)
+        self.replyID.configure(font="-family {Courier New} -size 11")
 
-        self.Label4 = tk.Label(top)
-        self.Label4.place(relx=0.017, rely=0.629, height=18, width=74)
-        self.Label4.configure(activebackground="#f9f9f9")
-        self.Label4.configure(activeforeground="black")
-        self.Label4.configure(background="#d9d9d9")
-        self.Label4.configure(disabledforeground="#a3a3a3")
-        self.Label4.configure(font="-family {Segoe UI} -size 13")
-        self.Label4.configure(foreground="#000000")
-        self.Label4.configure(highlightbackground="#d9d9d9")
-        self.Label4.configure(highlightcolor="black")
-        self.Label4.configure(text='Tweet ID')
 
-        self.Label5 = tk.Label(top)
-        self.Label5.place(relx=0.017, rely=0.8, height=18, width=124)
-        self.Label5.configure(activebackground="#f9f9f9")
-        self.Label5.configure(activeforeground="black")
-        self.Label5.configure(background="#d9d9d9")
-        self.Label5.configure(disabledforeground="#a3a3a3")
-        self.Label5.configure(font="-family {Segoe UI} -size 13")
-        self.Label5.configure(foreground="#000000")
-        self.Label5.configure(highlightbackground="#d9d9d9")
-        self.Label5.configure(highlightcolor="black")
-        self.Label5.configure(text='Media filename')
+        self.replyIDLabel = tk.Label(top)
+        self.replyIDLabel.place(relx=0.017, rely=0.629, height=18, width=74)
+        self.replyIDLabel.configure(text='Tweet ID', background=_bgcolor, font="-size 13")
 
-        self.Entry3 = tk.Entry(top)
-        self.Entry3.place(relx=0.017, rely=0.886, height=20, relwidth=0.337)
-        self.Entry3.configure(background="white")
-        self.Entry3.configure(disabledforeground="#a3a3a3")
-        self.Entry3.configure(font="-family {Courier New} -size 11")
-        self.Entry3.configure(foreground="#000000")
-        self.Entry3.configure(highlightbackground="#d9d9d9")
-        self.Entry3.configure(highlightcolor="black")
-        self.Entry3.configure(insertbackground="black")
-        self.Entry3.configure(selectbackground="blue")
-        self.Entry3.configure(selectforeground="white")
-        self.Entry3.insert(0,'default.jpg')
+        self.filenameLabel = tk.Label(top)
+        self.filenameLabel.place(relx=0.017, rely=0.8, height=18, width=124)
+        self.filenameLabel.configure(text='Media filename', background=_bgcolor, font="-size 13")
 
-        self.Text1 = tk.Text(top)
-        self.Text1.place(relx=0.017, rely=0.229, relheight=0.269, relwidth=0.877)
+        self.filename = tk.Entry(top)
+        self.filename.place(relx=0.017, rely=0.886, height=20, relwidth=0.337)
+        self.filename.configure(font="-family {Courier New} -size 11")
 
-        self.Text1.configure(background="white")
-        self.Text1.configure(font="TkTextFont")
-        self.Text1.configure(foreground="black")
-        self.Text1.configure(highlightbackground="#d9d9d9")
-        self.Text1.configure(highlightcolor="black")
-        self.Text1.configure(insertbackground="black")
-        self.Text1.configure(selectbackground="blue")
-        self.Text1.configure(selectforeground="white")
-        self.Text1.configure(wrap="word")
-        self.Text1.configure(font="-family {Segoe UI} -size 11")
+        self.caption = tk.Text(top)
+        self.caption.place(relx=0.017, rely=0.229, relheight=0.269, relwidth=0.877)
+        self.caption.configure(font="-family {Segoe UI} -size 11", wrap="word")
 
         def endis():
             print(self)
             if cb1.get() == 0:
-                self.Entry2['state'] = 'disabled'
+                self.replyID['state'] = 'disabled'
             else:
-                self.Entry2['state'] = 'normal'
+                self.replyID['state'] = 'normal'
             if cb2.get() == 0:
-                self.Entry3['state'] = 'disabled'
+                self.filename['state'] = 'disabled'
             else:
-                self.Entry3['state'] = 'normal'
+                self.filename['state'] = 'normal'
 
         self.Checkbutton2 = tk.Checkbutton(top)
         self.Checkbutton2.place(relx=0.174, rely=0.514, relheight=0.086, relwidth=0.245)
-        self.Checkbutton2.configure(activebackground="#ececec")
-        self.Checkbutton2.configure(activeforeground="#000000")
-        self.Checkbutton2.configure(background="#d9d9d9")
-        self.Checkbutton2.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton2.configure(font="-family {Segoe UI} -size 13")
-        self.Checkbutton2.configure(foreground="#000000")
-        self.Checkbutton2.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton2.configure(highlightcolor="black")
-        self.Checkbutton2.configure(justify='left')
-        self.Checkbutton2.configure(text='Contains media')
-        self.Checkbutton2.configure(variable=cb2)
-        self.Checkbutton2.configure(command=endis)
+        self.Checkbutton2.configure(background=_bgcolor, command=endis, variable=cb2, text='Contains media', justify='left', font="-size 13")
 
         self.Checkbutton1 = tk.Checkbutton(top)
         self.Checkbutton1.place(relx=0.017, rely=0.514, relheight=0.086, relwidth=0.123)
-        self.Checkbutton1.configure(activebackground="#ececec")
-        self.Checkbutton1.configure(activeforeground="#000000")
-        self.Checkbutton1.configure(background="#d9d9d9")
-        self.Checkbutton1.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton1.configure(font="-family {Segoe UI} -size 13")
-        self.Checkbutton1.configure(foreground="#000000")
-        self.Checkbutton1.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton1.configure(highlightcolor="black")
-        self.Checkbutton1.configure(justify='left')
-        self.Checkbutton1.configure(text='Reply')
-        self.Checkbutton1.configure(variable=cb1)
-        self.Checkbutton1.configure(command=endis)
+        self.Checkbutton1.configure(font="-size 13", background=_bgcolor, variable=cb1, command=endis, text='Reply', justify='left')
 
         def crash(exc):
             with open('crashlog.txt', 'w') as f:
@@ -232,11 +145,11 @@ class Toplevel1:
             with open('drafts.paul.town', 'a') as f:
                 if cb1.get() == 1:
                     if cb2.get() == 1:
-                        if self.Entry2.get() != '':
-                            if self.Entry3.get() != '':
-                                if os.path.isfile(self.Entry3.get()) == True:
+                        if self.replyID.get() != '':
+                            if self.filename.get() != '':
+                                if os.path.isfile(self.filename.get()) == True:
                                     try:
-                                        draft = {'tweet':self.Text1.get('1.0','end-1c'), 'TID':self.Entry2.get(), 'media':self.Entry3.get()}
+                                        draft = {'tweet':self.caption.get('1.0','end-1c'), 'TID':self.replyID.get(), 'media':self.filename.get()}
                                         json.dump(draft, f)
                                         f.write('\n')
                                         print('Draft saved!')
@@ -251,9 +164,9 @@ class Toplevel1:
                         else:
                             mbox.showinfo('Error','There is no tweet ID')
                     else:
-                        if self.Text1.get('1.0','end-1c') != '':
-                            if self.Entry2.get() != '':
-                                draft = {'tweet':self.Text1.get('1.0','end-1c'), 'TID':self.Entry2.get()}
+                        if self.caption.get('1.0','end-1c') != '':
+                            if self.replyID.get() != '':
+                                draft = {'tweet':self.caption.get('1.0','end-1c'), 'TID':self.replyID.get()}
                                 json.dump(draft, f)
                                 f.write('\n')
                                 print('Draft saved!')
@@ -265,10 +178,10 @@ class Toplevel1:
 
                 else:
                     if cb2.get() == 1:
-                        if self.Entry3.get() != '':
-                            if os.path.isfile(self.Entry3.get()) == True:
+                        if self.filename.get() != '':
+                            if os.path.isfile(self.filename.get()) == True:
                                 try:
-                                    draft = {'tweet':self.Text1.get('1.0','end-1c'), 'media':self.Entry3.get()}
+                                    draft = {'tweet':self.caption.get('1.0','end-1c'), 'media':self.filename.get()}
                                     json.dump(draft, f)
                                     f.write('\n')
                                     print('Draft saved!')
@@ -281,24 +194,24 @@ class Toplevel1:
                         else:
                             mbox.showinfo('Error','Please specify a media file')
                     else:
-                        if self.Text1.get('1.0','end-1c') != '':
-                            draft = {'tweet':self.Text1.get('1.0','end-1c')}
+                        if self.caption.get('1.0','end-1c') != '':
+                            draft = {'tweet':self.caption.get('1.0','end-1c')}
                             json.dump(draft, f)
                             f.write('\n')
                             print('Draft saved!')
                             mbox.showinfo('Success!','Draft has been saved')
                         else:
                             mbox.showinfo('Error','Your tweet is empty')
-        
+
         def tweet():
             if cb1.get() == 1:
                 if cb2.get() == 1:
-                    if self.Entry2.get() != '':
-                        if self.Entry3.get() != '':
-                            if len(self.Text1.get('1.0','end-1c')) <= 280:
-                                if os.path.isfile(self.Entry3.get()) == True:
+                    if self.replyID.get() != '':
+                        if self.filename.get() != '':
+                            if len(self.caption.get('1.0','end-1c')) <= 280:
+                                if os.path.isfile(self.filename.get()) == True:
                                     try:
-                                        api.update_status_with_media(self.Entry3.get(), status = self.Text1.get('1.0','end-1c'), in_reply_to_status_id = self.Entry2.get(), auto_populate_reply_metadata=True)
+                                        api.update_status_with_media(self.filename.get(), status = self.caption.get('1.0','end-1c'), in_reply_to_status_id = self.replyID.get(), auto_populate_reply_metadata=True)
                                         print('Tweet sent!')
                                         os._exit(0)
                                     except Exception as e:
@@ -307,32 +220,32 @@ class Toplevel1:
                                 else:
                                     mbox.showinfo('Error','''No such file exists in this script's folder''')
                             else:
-                                mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
+                                mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.caption.get('1.0','end-1c'))})''')
                         else:
                             mbox.showinfo('Error','Please specify a media file')
                     else:
                         mbox.showinfo('Error','There is no tweet ID')
                 else:
-                    if self.Text1.get('1.0','end-1c') != '':
-                        if len(self.Text1.get('1.0','end-1c')) <= 280:
-                            if self.Entry2.get() != '':
-                                api.update_status(status = self.Text1.get('1.0','end-1c'), in_reply_to_status_id = self.Entry2.get(), auto_populate_reply_metadata=True)
+                    if self.caption.get('1.0','end-1c') != '':
+                        if len(self.caption.get('1.0','end-1c')) <= 280:
+                            if self.replyID.get() != '':
+                                api.update_status(status = self.caption.get('1.0','end-1c'), in_reply_to_status_id = self.replyID.get(), auto_populate_reply_metadata=True)
                                 print('Tweet sent!')
                                 os._exit(0)
                             else:
                                 mbox.showinfo('Error','There is no tweet ID')
                         else:
-                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
+                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.caption.get('1.0','end-1c'))})''')
                     else:
                         mbox.showinfo('Error','Your tweet is empty')
 
             else:
                 if cb2.get() == 1:
-                    if self.Entry3.get() != '':
-                        if len(self.Text1.get('1.0','end-1c')) <= 280:
-                            if os.path.isfile(self.Entry3.get()) == True:
+                    if self.filename.get() != '':
+                        if len(self.caption.get('1.0','end-1c')) <= 280:
+                            if os.path.isfile(self.filename.get()) == True:
                                 try:
-                                    api.update_status_with_media(self.Text1.get('1.0','end-1c'), self.Entry3.get())
+                                    api.update_status_with_media(self.caption.get('1.0','end-1c'), self.filename.get())
                                     print('Tweet sent!')
                                     os._exit(0)
                                 except Exception as e:
@@ -341,83 +254,51 @@ class Toplevel1:
                             else:
                                 mbox.showinfo('Error','''No such file exists in this script's folder''')
                         else:
-                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
+                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.caption.get('1.0','end-1c'))})''')
                     else:
                         mbox.showinfo('Error','Please specify a media file')
                 else:
-                    if self.Text1.get('1.0','end-1c') != '':
-                        if len(self.Text1.get('1.0','end-1c')) <= 280:
-                            api.update_status(self.Text1.get('1.0','end-1c'))
+                    if self.caption.get('1.0','end-1c') != '':
+                        if len(self.caption.get('1.0','end-1c')) <= 280:
+                            api.update_status(self.caption.get('1.0','end-1c'))
                             print('Tweet sent!')
                             os._exit(0)
                         else:
-                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.Text1.get('1.0','end-1c'))})''')
+                            mbox.showinfo('Error',f'''Your tweet is over the character limit ({len(self.caption.get('1.0','end-1c'))})''')
                     else:
                         mbox.showinfo('Error','Your tweet is empty')
-        
-        self.Button1 = tk.Button(top)
-        self.Button1.place(relx=0.555, rely=0.540, height=85, width=200)
-        self.Button1.configure(activebackground="#ececec")
-        self.Button1.configure(activeforeground="#000000")
-        self.Button1.configure(background="#d9d9d9")
-        self.Button1.configure(disabledforeground="#a3a3a3")
-        self.Button1.configure(font="-family {Segoe UI} -size 14 -weight bold")
-        self.Button1.configure(foreground="#000000")
-        self.Button1.configure(highlightbackground="#d9d9d9")
-        self.Button1.configure(highlightcolor="black")
-        self.Button1.configure(pady="0")
-        self.Button1.configure(text='Send Tweet!')
-        self.Button1.configure(command=tweet)
 
-        self.Button2 = tk.Button(top)
-        self.Button2.place(relx=0.555, rely=0.800, height=45, width=98)
-        self.Button2.configure(activebackground="#ececec")
-        self.Button2.configure(activeforeground="#000000")
-        self.Button2.configure(background="#d9d9d9")
-        self.Button2.configure(disabledforeground="#a3a3a3")
-        self.Button2.configure(font="-family {Segoe UI} -size 14 -weight bold")
-        self.Button2.configure(foreground="#000000")
-        self.Button2.configure(highlightbackground="#d9d9d9")
-        self.Button2.configure(highlightcolor="black")
-        self.Button2.configure(pady="0")
-        self.Button2.configure(text='Drafts')
-        self.Button2.configure(command=read_drafts)
+        self.sendTweet = tk.Button(top)
+        self.sendTweet.place(relx=0.555, rely=0.540, height=85, width=200)
+        self.sendTweet.configure(font="-size 14 -weight bold", command=tweet, text='Send Tweet!', pady="0", background=_bgcolor)
 
-        self.Button2 = tk.Button(top)
-        self.Button2.place(relx=0.732, rely=0.800, height=45, width=98)
-        self.Button2.configure(activebackground="#ececec")
-        self.Button2.configure(activeforeground="#000000")
-        self.Button2.configure(background="#d9d9d9")
-        self.Button2.configure(disabledforeground="#a3a3a3")
-        self.Button2.configure(font="-family {Segoe UI} -size 14 -weight bold")
-        self.Button2.configure(foreground="#000000")
-        self.Button2.configure(highlightbackground="#d9d9d9")
-        self.Button2.configure(highlightcolor="black")
-        self.Button2.configure(pady="0")
-        self.Button2.configure(text='Save')
-        self.Button2.configure(command=save_drafts)
+        self.saveDraft = tk.Button(top)
+        self.saveDraft.place(relx=0.555, rely=0.800, height=45, width=98)
+        self.saveDraft.configure(command=read_drafts, text='Drafts', pady="0", background=_bgcolor, font="-size 14 -weight bold")
+
+        self.saveDraft = tk.Button(top)
+        self.saveDraft.place(relx=0.732, rely=0.800, height=45, width=98)
+        self.saveDraft.configure(font="-family {Segoe UI} -size 14 -weight bold", background=_bgcolor, pady="0", text='Save', command=save_drafts)
 
         if os.stat('temp.dump').st_size != 0:
-            print('not empty')
             with open('temp.dump', 'r') as tempdump:
                 templist = list(tempdump)
             open("temp.dump", "w").close()
             if str(templist[0]) != '':
                 print('not empty')
                 cdraft = json.loads(templist[0])
-                print(cdraft)
                 BTDtweet = cdraft.get('tweet')
-                self.Text1.insert(1.0, BTDtweet)
+                self.caption.insert(1.0, BTDtweet)
                 if 'TID' in cdraft:
                     self.Checkbutton1.select()
                     BTDTID = cdraft.get('TID')
-                    self.Entry2.delete(0,tk.END)
-                    self.Entry2.insert(0,BTDTID)
+                    self.replyID.delete(0,tk.END)
+                    self.replyID.insert(0,BTDTID)
                 if 'media' in cdraft:
                     self.Checkbutton2.select()
                     BTDmedia = cdraft.get('media')
-                    self.Entry3.delete(0,tk.END)
-                    self.Entry3.insert(0,BTDmedia)
+                    self.filename.delete(0,tk.END)
+                    self.filename.insert(0,BTDmedia)
         endis()
 
 if __name__ == '__main__':

@@ -1,17 +1,21 @@
-1.1
+1.1.0
 -Ability to reply to tweets
 -Ability to post and reply with media
 
-1.2
+1.2.0
 -Drafts
 -Setup wizard
 
-1.3
+1.3.0
 -Now using up to date tweepy
 -Errors are now logged in crashlog.txt
 -Character limit check
 -Secure version of BT (all authentication info is encrypted)
 -WARNING: You will not be able to use BT on another machine without setting it up again
+
+1.3.1
+-Fixed setup package installer bug
+-Cleaned up code, now it is a lot more readable and efficient (WIP, I might optimize it further)
 
 Todo:
 Ability to select media from outside the BT folder
