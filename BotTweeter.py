@@ -42,43 +42,30 @@ def vp_start_gui():
     BT_support.init(root, top)
     root.mainloop()
 
-w = None
-def create_Toplevel1(rt, *args, **kwargs):
-    global w, w_win, root
-    root = rt
-    w = tk.Toplevel (root)
-    BT_support.set_Tk_var()
-    top = Toplevel1 (w)
-    BT_support.init(w, top, *args, **kwargs)
-    return (w, top)
-
-def destroy_Toplevel1():
-    global w
-    w.destroy()
-    w = None
 
 class Toplevel1:
     def __init__(self, top=None):
 
+        def crashlog(exc):
+            with open('crashlog.txt', 'w') as f:
+                f.write(str(exc))
+            mbox.showinfo('Error','''Something went wrong! Please contact the developer and send them the crashlog.txt''', icon='error')
+
+
         _bgcolor = '#d9d9d9'
-        _fgcolor = '#000000'
-        _compcolor = '#d9d9d9'
-        _ana1color = '#d9d9d9'
-        _ana2color = '#ececec'
 
         top.geometry("575x350") #+713+216"
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
         top.resizable(1,  1)
-        top.title("BotTweeter 1.3.1")
+        top.title("BotTweeter 1.3.2")
         top.configure(background=_bgcolor)
         top.configure(highlightbackground=_bgcolor)
         top.configure(highlightcolor="black")
 
         self.title = tk.Label(top)
-        self.title.place(relx=0.301, rely=0.029, height=32, width=220)
-        self.title.configure(text='BotTweeter 1.3.1',
-                              background=_bgcolor, font="-size 20 -weight bold")
+        self.title.place(relx=0.299, rely=0.029, height=32, width=220) #relx = .299 when subversion is included (x.y.z), otherwise .313
+        self.title.configure(text='BotTweeter 1.3.2', background=_bgcolor, font="-size 20 -weight bold")
 
         self.sig = tk.Label(top)
         self.sig.place(relx=0.417, rely=0.114, height=32, width=71)
@@ -107,13 +94,13 @@ class Toplevel1:
         self.filename = tk.Entry(top)
         self.filename.place(relx=0.017, rely=0.886, height=20, relwidth=0.337)
         self.filename.configure(font="-family {Courier New} -size 11")
+        self.filename.insert(0,'default.jpg')
 
         self.caption = tk.Text(top)
         self.caption.place(relx=0.017, rely=0.229, relheight=0.269, relwidth=0.877)
         self.caption.configure(font="-family {Segoe UI} -size 11", wrap="word")
 
         def endis():
-            print(self)
             if cb1.get() == 0:
                 self.replyID['state'] = 'disabled'
             else:
@@ -130,15 +117,13 @@ class Toplevel1:
         self.Checkbutton1 = tk.Checkbutton(top)
         self.Checkbutton1.place(relx=0.017, rely=0.514, relheight=0.086, relwidth=0.123)
         self.Checkbutton1.configure(font="-size 13", background=_bgcolor, variable=cb1, command=endis, text='Reply', justify='left')
-
-        def crash(exc):
-            with open('crashlog.txt', 'w') as f:
-                f.write(str(exc))
-            mbox.showinfo('Error','''Something went wrong! Please contact the developer and send them the crashlog.txt file''', icon='error')
-
+        
         def read_drafts():
             if os.stat('drafts.paul.town').st_size != 0:
-                drafts.vp_start_gui()
+                try: drafts.vp_start_gui()
+                except Exception as e:
+                    crashlog(exc = traceback.format_exc())
+                    exit()
             else:
                 mbox.showinfo('Error','You have no drafts')
         def save_drafts():
@@ -155,7 +140,7 @@ class Toplevel1:
                                         print('Draft saved!')
                                         mbox.showinfo('Success!','Draft has been saved')
                                     except Exception as e:
-                                        crash(exc = traceback.format_exc())
+                                        crashlog(exc = traceback.format_exc())
                                         exit()
                                 else:
                                     mbox.showinfo('Error','''No such file exists in this script's folder''')
@@ -187,7 +172,7 @@ class Toplevel1:
                                     print('Draft saved!')
                                     mbox.showinfo('Success!','Draft has been saved')
                                 except Exception as e:
-                                    crash(exc = traceback.format_exc())
+                                    crashlog(exc = traceback.format_exc())
                                     exit()
                             else:
                                 mbox.showinfo('Error','''No such file exists in this script's folder''')
@@ -211,11 +196,11 @@ class Toplevel1:
                             if len(self.caption.get('1.0','end-1c')) <= 280:
                                 if os.path.isfile(self.filename.get()) == True:
                                     try:
-                                        api.update_status_with_media(self.filename.get(), status = self.caption.get('1.0','end-1c'), in_reply_to_status_id = self.replyID.get(), auto_populate_reply_metadata=True)
+                                        api.update_status_with_media(filename = self.filename.get(), status = self.caption.get('1.0','end-1c'), in_reply_to_status_id = self.replyID.get(), auto_populate_reply_metadata=True)
                                         print('Tweet sent!')
                                         os._exit(0)
                                     except Exception as e:
-                                        crash(exc = traceback.format_exc())
+                                        crashlog(exc = traceback.format_exc())
                                         exit()
                                 else:
                                     mbox.showinfo('Error','''No such file exists in this script's folder''')
@@ -245,11 +230,11 @@ class Toplevel1:
                         if len(self.caption.get('1.0','end-1c')) <= 280:
                             if os.path.isfile(self.filename.get()) == True:
                                 try:
-                                    api.update_status_with_media(self.caption.get('1.0','end-1c'), self.filename.get())
+                                    api.update_status_with_media(status = self.caption.get('1.0','end-1c'), filename = self.filename.get())
                                     print('Tweet sent!')
                                     os._exit(0)
                                 except Exception as e:
-                                    crash(exc = traceback.format_exc())
+                                    crashlog(exc = traceback.format_exc())
                                     exit()
                             else:
                                 mbox.showinfo('Error','''No such file exists in this script's folder''')
@@ -299,7 +284,13 @@ class Toplevel1:
                     BTDmedia = cdraft.get('media')
                     self.filename.delete(0,tk.END)
                     self.filename.insert(0,BTDmedia)
-        endis()
+        try: endis()
+        except Exception as e:
+            crashlog(exc = traceback.format_exc())
+            exit()
 
 if __name__ == '__main__':
-    vp_start_gui()
+    try: vp_start_gui()
+    except Exception as e:
+        crashlog(exc = traceback.format_exc())
+        exit()

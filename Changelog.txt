@@ -17,6 +17,13 @@
 -Fixed setup package installer bug
 -Cleaned up code, now it is a lot more readable and efficient (WIP, I might optimize it further)
 
+1.3.2
+-Fixed a slight issue with default filename entry
+-Fixed a bug with selecting media to be uploaded
+-Cleaned up the code further
+-Error logs are now a lot more consistent
+-Fixed bug with replying with media
+
 Todo:
 Ability to select media from outside the BT folder
 Ability to quote tweet without pasting link
