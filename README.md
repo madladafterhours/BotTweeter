@@ -2,13 +2,6 @@
 
 ![Image](https://i.imgur.com/MY8Hs0K.png)
 
-DISCLAIMER
------------------------------------------------------------------------------------
-BT was made to run on APIv1, I'm pretty sure (but not certain) that it works on
-APIv2 natively though. If you're getting authentication errors after verifying
-that the tokens are correct, the API version used is most likely the issue.
------------------------------------------------------------------------------------
-
 INSTALLATION
 -----------------------------------------------------------------------------------
 -Install pip if you haven't already
